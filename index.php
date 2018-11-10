@@ -64,6 +64,7 @@ session_start();
 
 					if(isset($resultado["email"])){
 						$_SESSION["nome"] = $resultado["nome"];
+						$_SESSION["id_usuario"] = $resultado["id_usuario"];
 						header("location:home.php");
 					}
 					else {

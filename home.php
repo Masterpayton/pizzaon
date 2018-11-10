@@ -39,10 +39,10 @@ if(!isset($_SESSION["nome"])){
                     <div class='thumbnail'><br>
                     <img src='".$produto["img"]."' style='height:200px;width:100%' class='img-rounded img-responsive'>
                       <div class='caption'>
-                      <h3>Thumbnail label</h3>
-                      <p>...</p>
-                      <p><a href='#' class='btn btn-primary' role='button'>Button</a> 
-                      <a href='#' class='btn btn-default' role='button'>Button</a></p>
+                      <h3>".$produto["nome"]."</h3>
+                      <p>R$ ".$produto["preco"]."</p>
+                      <p><a href='adicionar.php?p=".$produto["id_produtos"]."' class='btn btn-success' role='button'>Adicionar</a> 
+                     </p>
                       </div>
                     </div>
                     </div>";
@@ -54,20 +54,26 @@ if(!isset($_SESSION["nome"])){
             <h3 style="color:white">Carrinho</h3>
             <div class="row">
             <?php            
-            $sql = "SELECT  * FROM produtos";
+            $id_usuario = $_SESSION["id_usuario"];
+            $sql = "SELECT  * FROM carrinho JOIN produtos ON carrinho.produto = produtos.id_produtos WHERE carrinho.usuario = $id_usuario";
             if($query = mysqli_query($conexao, $sql)){
+                $ct = 0;
                 while($produto = mysqli_fetch_assoc($query)){
+                    $ct++;
                     echo "<div class=' col-lg-12' style='background:whiste;margin-top:10px;margin-bottom:10px'>
                     <div class='thumbnail'><br>
                     <img src='".$produto["img"]."' style='height:200px;width:100%' class='img-rounded img-responsive'>
                     <div class='caption'>
-                    <h3>Thumbnail label</h3>
-                    <p>...</p>
-                    <p><a href='#' class='btn btn-primary' role='button'>Button</a> 
-                    <a href='#' class='btn btn-default' role='button'>Button</a></p>
+                    <h3>".$produto["nome"]."</h3>
+                    <p>R$ ".$produto["preco"]."</p>
+                    <p><a href='#' class='btn btn-danger' role='button'>Remover</a> 
+                   </p>
                     </div>
                     </div>
                     </div>";
+                }
+                if($ct == 0){
+                    echo "<p> Você ainda não possui itens no carrinho </p>";
                 }
             }
             ?>
