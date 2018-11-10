@@ -1,0 +1,45 @@
+/*Guilherme Alves*/
+body{
+  background-image: url("../img/2.jpg");
+  /*background-size: cover;*/
+  background-attachment: fixed;
+}
+.active{
+  width: 25px;
+  height: 25px;
+}
+.form-horizontal{
+  /* top: 150px; */
+  /* background-color: white; */
+  padding: 30px;
+  padding-right: 100px;
+  text-align: center;
+  transition: 1s;
+}
+.form-horizo{
+  /* top: 150px; */
+  text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    /*display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #ffffff;
+}
