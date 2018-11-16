@@ -34,7 +34,15 @@ if(!isset($_SESSION["nome"])){
         
         $sql = "SELECT  * FROM produtos";
         if($query = mysqli_query($conexao, $sql)){
+            $ct = 0;
             while($produto = mysqli_fetch_assoc($query)){
+                $ct++;
+                if($ct%3==0){
+                    $row = true;
+                    echo "<div class='row'>";
+                }else{
+                    $row = false;
+                }
                 echo "<div class='col-lg-3 col-lg-offset-1' style='margin-top:10px;margin-bottom:10px'>
                     <div class='thumbnail'><br>
                     <img src='".$produto["img"]."' style='height:200px;width:100%' class='img-rounded img-responsive'>
@@ -46,6 +54,9 @@ if(!isset($_SESSION["nome"])){
                       </div>
                     </div>
                     </div>";
+                if($row){
+                    echo "</div>";
+                }
                 }
             }
             ?>
@@ -60,13 +71,13 @@ if(!isset($_SESSION["nome"])){
                 $ct = 0;
                 while($produto = mysqli_fetch_assoc($query)){
                     $ct++;
-                    echo "<div class=' col-lg-12' style='background:whiste;margin-top:10px;margin-bottom:10px'>
+                    echo "<div class=' col-lg-12' style='margin-top:10px;margin-bottom:10px'>
                     <div class='thumbnail'><br>
                     <img src='".$produto["img"]."' style='height:200px;width:100%' class='img-rounded img-responsive'>
                     <div class='caption'>
                     <h3>".$produto["nome"]."</h3>
                     <p>R$ ".$produto["preco"]."</p>
-                    <p><a href='#' class='btn btn-danger' role='button'>Remover</a> 
+                    <p><a href='excluir.php?p=".$produto["id_produtos"]."' class='btn btn-danger' role='button'>Remover</a> 
                    </p>
                     </div>
                     </div>
@@ -80,7 +91,7 @@ if(!isset($_SESSION["nome"])){
             </div>
             <div class="row">
             <a href="" class='btn btn-success btn-block'>Finalizar Compra</a>
-            <a href="" class='btn btn-danger btn-block'>Limpar Carrinho</a>
+            <a href="apagar_td.php" class='btn btn-danger btn-block'>Limpar Carrinho</a>
             </div>
             </div>
 		</div>
