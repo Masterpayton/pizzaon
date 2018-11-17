@@ -16,7 +16,6 @@
 
 					<ul class="nav navbar-nav navbar-left">
 					<li><a href="home.php">Cardápio</a></li>
-                    <li><a href="carrinho.php">Carrinho</a></li>
 					</ul>
 
 				<ul class="nav navbar-nav navbar-right">

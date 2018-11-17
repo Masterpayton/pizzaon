@@ -19,7 +19,7 @@ if(!isset($_SESSION["nome"])){
 	<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	 <link href="css/bootstrap.min.css" rel="stylesheet">
 	</head>
-	<body>
+	<body style="background-image:url('img/3.jpg');background-attachment:fixed;background-size:cover;background-position:center">
 		
 
 		<?php
@@ -69,8 +69,10 @@ if(!isset($_SESSION["nome"])){
             $sql = "SELECT  * FROM carrinho JOIN produtos ON carrinho.produto = produtos.id_produtos WHERE carrinho.usuario = $id_usuario";
             if($query = mysqli_query($conexao, $sql)){
                 $ct = 0;
+                $total = 0;
                 while($produto = mysqli_fetch_assoc($query)){
                     $ct++;
+                    $total+=$produto["preco"];
                     echo "<div class=' col-lg-12' style='margin-top:10px;margin-bottom:10px'>
                     <div class='thumbnail'><br>
                     <img src='".$produto["img"]."' style='height:200px;width:100%' class='img-rounded img-responsive'>
@@ -87,10 +89,13 @@ if(!isset($_SESSION["nome"])){
                     echo "<p> Você ainda não possui itens no carrinho </p>";
                 }
             }
+            if($total>0){
+                print "<h4><span class='label label-primary'>Total: R$ ".($total+7)."</label></h4>";
+            }
             ?>
             </div>
             <div class="row">
-            <a href="" class='btn btn-success btn-block'>Finalizar Compra</a>
+            <a href="#" onclick="alert('Compra concluída, entregaremos em breve');window.location.href='apagar_td.php'" class='btn btn-success btn-block'>Finalizar Compra</a>
             <a href="apagar_td.php" class='btn btn-danger btn-block'>Limpar Carrinho</a>
             </div>
             </div>
